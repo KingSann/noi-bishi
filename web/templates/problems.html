@@ -1,0 +1,46 @@
+{% extends 'main.html' %}
+
+{% block body %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>题目名称</th>
+            <th>通过人数</th>
+            <th>提交次数</th>
+            <th>通过率</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in problems %}
+        <tr>
+            <td>{{row[0]}}</td>
+            <td class="pname"><a href="/problem/{{row[0]}}">{{row[1]}}</a></td>
+            <td>{{row[2]}}</td>
+            <td><a href="/status?problem={{row[0]}}">{{row[3]}}</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success" style="width: {{row[4]}}%"><span class="sr-only">{{row[4]}}%通过</span></div>
+                    <div class="progress-bar progress-bar-warning" style="width: {{100-row[4]}}%"><span class='sr-only'>{{100-row[4]}}%错误</span></div>
+                </div>
+            </td>
+        </tr>
+        {% end %}
+    </tbody>
+</table>
+<div class="row">
+    <div class="col-md-3 col-md-offset-9">
+        <button class="btn btn-info" onclick="window.location.href='/problem/new'">添加新题目</button>
+    </div>
+</div>
+
+<div class="center">
+    <ul class="pagination">
+        <li {% if pages[0][0] == 0%} class="disabled"{% end%}><a href="{{pages[0][2]}}">&laquo;</a></li>
+        {% for row in pages[1] %}
+        <li {% if row[2]%} class="active"{% end %}><a href="{{row[1]}}">{{row[0]}}</a></li>
+        {% end %}
+        <li {% if pages[0][1] == 0%} class="disable"{% end%}><a href="{{pages[0][3]}}">&raquo;</a></li>
+    </ul>
+</div>
+{% end %}

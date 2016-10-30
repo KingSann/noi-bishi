@@ -1,0 +1,57 @@
+{% extends 'main.html' %}
+
+{% block body %}
+<script type="text/javascript">
+function judge()
+{
+    var i;
+    var num=0;
+    for(i=1; i<=20;i++){
+        var s="input:radio[name='"+i+"']:checked"
+        if($(s).val()=='1'){
+            num=num+1;
+            $("#p"+i).css("color","green");
+        }
+        else{
+            $("#p"+i).css("color","red");
+        }
+    }
+    alert("得分:"+(num*5))
+}
+</script>
+    <h1 class="center">笔试测试</h1>
+    <br>
+    <form class="form-horizontal">
+        <fieldset>
+            <legend>题目</legend>
+            {% raw xsrf_form_html()%}
+            {%set num = 1%}
+            {% for row in timu%}
+                <div class="form-group">
+                    <label for="inputName" class="col-lg-2 control-label" id="p{{num}}">{{num}}</label>
+                    <div class="col-lg-10">
+                        <span class="help-block">{{row[0]}}</span>
+                        <input type="radio" name="{{num}}" value="{{row[1][0][1]}}" /> {{row[1][0][0]}}
+                        <br>
+                        <input type="radio" name="{{num}}" value="{{row[1][1][1]}}" /> {{row[1][1][0]}}
+                        <br>
+                        <input type="radio" name="{{num}}" value="{{row[1][2][1]}}" /> {{row[1][2][0]}}
+                        <br>
+                        <input type="radio" name="{{num}}" value="{{row[1][3][1]}}" /> {{row[1][3][0]}}
+                    </div>
+                </div>
+                <hr>
+                {%set num = num +1%}
+            {% end%}
+             <div class="form-group">
+                    <label for="inputName" class="col-lg-2 control-label">操作</label>
+                    <div class="col-lg-10">
+                        <input type="button" class='btn btn-info' value="评分" onClick="judge()" ></input>
+                        (按F5可刷新题目)
+                    </div>
+                </div>
+            
+        </fieldset>
+    </form>
+
+{% end %}

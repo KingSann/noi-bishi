@@ -1,0 +1,48 @@
+{% extends 'main.html' %}
+{% block body %}
+<h1 class="center">比赛题目# {{problem[2]}}</h1>
+<div class="row">
+    <div class="col-md-12">
+        <div class="center">
+            <h5>
+            <span class="label label-info">时间限制: {{problem[4]}}ms</span>&nbsp;
+            <span class="label label-info">空间限制: {{problem[5]}}MB</span>&nbsp;
+            <button class="btn btn-info" onclick="window.location.href='/contest/{{contest_id}}'">返回比赛</button> 
+            <div class="btn-group">
+                 <button class="btn btn-info" onclick="window.location.href='/contest/{{contest_id}}/{{problem[0]}}/submit'">提交</button> 
+                 <button data-toggle="dropdown" class="btn btn-info dropdown-toggle"><span class="caret"></span></button>
+                <ul class="dropdown-menu" >
+                    <li>
+                        <a href="#post">讨论</a>
+                    </li>
+                    <li>
+                        <a href="#msg">报错</a>
+                    </li>
+                    <li class="divider">
+                    </li>
+                    <li>
+                        <a href="/contest/{{contest_id}}/edit">管理</a>
+                    </li>
+                </ul>
+            </div>
+            </h5>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="markdown content">
+            {{ problem[3] }}
+        </div>
+    </div>
+</div>
+<div class="empty"></div>
+<div class="row">
+    <div class="col-md-12">
+        <span class="label label-primary">题目添加者: {{problem[6]}}</span>&nbsp;
+        <span class="label label-primary">题目类型: {{
+['未设置','OI赛制','ACM赛制','提交答案','IOI赛制','交互'][problem[1]]}}</span>&nbsp;
+    </div>
+</div>
+
+{% end %}
