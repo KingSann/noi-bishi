@@ -1,6 +1,9 @@
 # noi-bishi
 A web exam system, specially for practicing NOI written examination.
 
+## Demo
+
+![demo](https://github.com/zrt/noi-bishi/raw/master/demo.jpeg)
 
 ## How to use.
 
